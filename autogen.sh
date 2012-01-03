@@ -1,6 +1,8 @@
+#!/bin/sh
 # (c) 2011 Mandriva, http://www.mandriva.com
 #
-# $Id$
+# Authors:
+#   Jean Parpaillon <jparpaillon@mandriva.com>
 #
 # This file is part of Mandriva Management Console (MMC).
 #
@@ -16,18 +18,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with MMC.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Author(s)
-#   Jean Parpaillon <jparpaillon@mandriva.com>
-#
-ldapconfdir = @ldapconfdir@
-ldaplibdir = @ldaplibdir@
 
-dist_ldapconf_DATA = mmc-check-password.conf
-dist_bin_SCRIPTS = mmc-password-helper
+set -e
 
-ldaplib_LTLIBRARIES = mmc-check-password.la
+$(dirname $0)/clean.sh
 
-mmc_check_password_la_CFLAGS = -I/usr/include/openldap/slapd/ -I/usr/include/openldap/include -DCONFIG_FILE=\"$(ldapconfdir)/mmc-check-password.conf\"
-mmc_check_password_la_SOURCES = mmc-check-password.c
-mmc_check_password_la_LDFLAGS = -module
+# Replace old stuff with the new intelligent autoreconf
+# http://www.gnu.org/s/libtool/manual/automake/Error-required-file-ltmain_002esh-not-found.html
+autoreconf --install
+
+exit 0

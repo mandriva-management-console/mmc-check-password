@@ -1,6 +1,8 @@
+#!/bin/sh
 # (c) 2011 Mandriva, http://www.mandriva.com
 #
-# $Id$
+# Authors:
+#   Jean Parpaillon <jparpaillon@mandriva.com>
 #
 # This file is part of Mandriva Management Console (MMC).
 #
@@ -16,18 +18,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with MMC.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Author(s)
-#   Jean Parpaillon <jparpaillon@mandriva.com>
-#
-ldapconfdir = @ldapconfdir@
-ldaplibdir = @ldaplibdir@
 
-dist_ldapconf_DATA = mmc-check-password.conf
-dist_bin_SCRIPTS = mmc-password-helper
+set -e
 
-ldaplib_LTLIBRARIES = mmc-check-password.la
+AUTOGEN_FILES="aclocal.m4 autom4te.cache configure config.guess config.log config.sub config.status depcomp compile libtool ltmain.sh missing mkinstalldirs config.h config.h.in py-compile install-sh"
 
-mmc_check_password_la_CFLAGS = -I/usr/include/openldap/slapd/ -I/usr/include/openldap/include -DCONFIG_FILE=\"$(ldapconfdir)/mmc-check-password.conf\"
-mmc_check_password_la_SOURCES = mmc-check-password.c
-mmc_check_password_la_LDFLAGS = -module
+echo "Clean autogen generated files"
+for file in $AUTOGEN_FILES; do
+    ( cd $(dirname $0) && rm -rf $file )
+done
