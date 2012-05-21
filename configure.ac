@@ -21,7 +21,7 @@ dnl autoconf version
 AC_PREREQ(2.59)
 
 dnl autoconf initialization
-AC_INIT([mmc-ldap-check-password], [3.0.3.2], [http://mds.mandriva.org])
+AC_INIT([mmc-check-password], [3.0.3.90], [http://projects.mandriva.org/projects/mmc-check-password])
 
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
@@ -39,10 +39,10 @@ AC_PROG_LN_S
 AC_PROG_LIBTOOL
 
 dnl Check for headers
-AC_HEADER_STDC
+# AC_HEADER_STDC
 # check for slap.h / portable.h headers
-AC_CHECK_HEADERS([openldap/include/portable.h],,AC_MSG_ERROR(mmc-check-password requires portable.h))
-AC_CHECK_HEADERS([openldap/slapd/slap.h],,AC_MSG_ERROR(mmc-check-password requires slap.h))
+# AC_CHECK_HEADERS([openldap/include/portable.h],,AC_MSG_ERROR(mmc-check-password requires portable.h))
+# AC_CHECK_HEADERS([openldap/slapd/slap.h],,AC_MSG_ERROR(mmc-check-password requires slap.h))
 
 dnl
 dnl --with-ldap-confdir
