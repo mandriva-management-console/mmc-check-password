@@ -23,6 +23,7 @@
 ldapconfdir = @ldapconfdir@
 ldaplibdir = @ldaplibdir@
 
+dist_sysconf_DATA = mmc-password-helper.ini
 dist_ldapconf_DATA = mmc-check-password.conf
 dist_bin_SCRIPTS = mmc-password-helper
 
@@ -31,3 +32,17 @@ ldaplib_LTLIBRARIES = mmc-check-password.la
 mmc_check_password_la_CFLAGS = -I/usr/include/openldap/slapd/ -I/usr/include/openldap/include -DCONFIG_FILE=\"$(ldapconfdir)/mmc-check-password.conf\"
 mmc_check_password_la_SOURCES = mmc-check-password.c
 mmc_check_password_la_LDFLAGS = -module
+
+EXTRA_DIST = mmc-password-helper.in
+CLEANFILES = mmc-password-helper
+
+mmc-password-helper: Makefile
+	rm -f $@ $@.tmp
+	$(MKDIR_P) $(@D)
+	srcdir=''; \
+		   test -f ./$@.in || srcdir=$(srcdir)/; \
+		   $(edit) $${srcdir}$@.in >$@.tmp
+	 mv $@.tmp $@
+
+edit = sed -e 's|@sysconfdir[@]|$(sysconfdir)|g'
+
