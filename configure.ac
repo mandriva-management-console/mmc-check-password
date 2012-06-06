@@ -21,7 +21,7 @@ dnl autoconf version
 AC_PREREQ(2.59)
 
 dnl autoconf initialization
-AC_INIT([mmc-check-password], [3.0.3.91], [http://projects.mandriva.org/projects/mmc-check-password])
+AC_INIT([mmc-check-password], [3.0.4], [http://projects.mandriva.org/projects/mmc-check-password])
 
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
